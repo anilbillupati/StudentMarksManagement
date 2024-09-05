@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academy Dashboard</title>
+  <style>
+    body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+ display: flex;
+ height: 100vh;
+ background-color: #e9ecef;
+}
+
+.container {
+ display: flex;
+ width: 100%;
+}
+
+.sidebar {
+ width: 250px;
+ background-color: #343a40;
+ color: #f8f9fa;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.sidebar .profile {
+ text-align: center;
+ padding: 20px;
+}
+
+.sidebar .profile img {
+ border-radius: 50%;
+ width: 80px;
+ height: 80px;
+}
+
+.sidebar nav ul {
+ list-style: none;
+ padding: 0;
+ width: 100%;
+}
+
+.sidebar nav ul li {
+ width: 100%;
+}
+
+.sidebar nav ul li a {
+ color: #f8f9fa;
+ text-decoration: none;
+ display: block;
+ padding: 15px 20px;
+ transition: background 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+ background-color: #495057;
+}
+
+.main-content {
+ flex: 1;
+ padding: 20px;
+ background: #fff;
+}
+
+header {
+ margin-bottom: 20px;
+}
+
+header h1 {
+ margin: 0;
+ color: #343a40;
+}
+
+header p {
+ color: #6c757d;
+}
+
+.content {
+ display: flex;
+ flex-direction: row; /* Changed to row */
+}
+
+.dropdown-container {
+ background-color: #F2F3F4;
+ color: #343a40;
+ padding: 15px;
+ border-radius: 8px;
+ box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+ flex: 1;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 20px;
+ box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+ height:60%;
+ width: 60%;
+ margin-top: 20px;
+}
+
+select {
+ width: 100%;
+ padding: 10px;
+ border: 1px solid #ced4da;
+ border-radius: 4px;
+ background-color: #F2F3F4;
+ color: #495057;
+}
+
+.tabs {
+ display: flex;
+ gap: 10px;
+ margin-top: 20px;
+ margin-left: 30px;
+}
+
+.tab {
+ background-color: #F2F3F4;
+ color: #343a40;
+ padding: 15px 20px;
+ border-radius: 8px;
+ cursor: pointer;
+ flex: 1;
+ text-align: center;
+ transition: background 0.3s, color 0.3s;
+}
+
+.tab:hover {
+ background-color: #f8f9fa;
+}
+
+.tab.active {
+ background-color: #007bff;
+ color: #ffffff;
+}
+
+.tab-content {
+ display: none;
+ background-color: #F2F3F4;
+ padding: 20px;
+ margin-top: 20px;
+ border-radius: 8px;
+ box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+ height: 400px;
+ width:60%;
+}
+
+.tab-content.active {
+ display: block;
+}
+
+.students-list, .homework-form, .behavior-form {
+ background: #F2F3F4;
+ padding: 20px;
+ border-radius: 8px;
+ box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.students-list ul {
+ list-style: none;
+ padding: 0;
+}
+
+.students-list ul li {
+ padding: 10px;
+ border-bottom: 1px solid #dee2e6;
+ cursor: pointer;
+}
+
+.students-list ul li:hover {
+ background-color: #f1f3f5;
+}
+
+.homework-form input, .homework-form textarea, .behavior-form textarea {
+ width: 100%;
+ padding: 10px;
+ margin: 10px 0;
+ border: 1px solid #ced4da;
+ border-radius: 4px;
+ background: #F2F3F4;
+
+}
+
+.homework-form button, .behavior-form button {
+ background-color: #007bff;
+ color: #ffffff;
+ padding: 10px 20px;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ transition: background 0.3s;
+}
+
+.homework-form button:hover, .behavior-form button:hover {
+ background-color: #0056b3;
+}
+
+.behavior-form {
+ display: none;
+}
+
+.behavior-form.active {
+ display: block;
+}
+
+.behavior-wrapper {
+ display: flex;
+ justify-content: space-between;
+ gap: 20px;
+}
+
+.select-student, .behavior-form {
+ flex: 1;
+}
+.main-content1 {
+ flex: 1;
+ padding: 20px;
+ background: #fff;
+ display: flex;
+ flex-direction: column;
+}
+.dropdown-column {
+ display: flex;
+ flex-direction: column;
+ gap: 20px; /* Added gap for spacing */
+ flex: 1;
+}
+-------------------------------------------------------------------------------
+.marks-form {
+display: flex;
+flex-direction: column;
+}
+.marks-and-info {
+display: flex;
+justify-content: space-between;
+}
+.marks-entry, .info-entry {
+flex: 1;
+margin-right: 20px;
+}
+.marks-entry {
+margin-right: 0;
+}
+.subject-entry {
+margin-bottom: 10px;
+}
+.subject-entry label {
+display: block;
+margin-bottom: 5px;
+}
+.subject-entry input {
+width: 70%;
+padding: 8px;
+box-sizing: border-box;
+}
+.info-entry {
+display: flex;
+flex-direction: column;
+}
+.student-info, .student-notes {
+margin-bottom: 50px;
+}
+.student-info label, .student-notes label {
+display: block;
+margin-bottom: 5px;
+}
+.student-info select, .student-notes textarea {
+width: 100%;
+height: 100%;
+padding: 10px;
+box-sizing: border-box;
+}
+.submit-button {
+width: 40%;
+padding: 10px 20px;
+background-color: #4CAF50;
+color: white;
+border: none;
+cursor: pointer;
+align-self: center; /* Center the button horizontally within the info-entry */
+}
+.submit-button:hover {
+background-color: #45a049;
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="sidebar">
+    <div class="profile">
+      <img src="profile.jpg" alt="Profile Image">
+      <p>Your Academy Name</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#" data-section="student-info">Student Information</a></li>
+        <li><a href="#" data-section="academic-performance">Academic Performance</a></li>
+        <li><a href="#" data-section="behavior-reports">Behavioral Reports</a></li>
+        <li><a href="#" data-section="classroom-activities">Classroom Activities</a></li>
+        <li><a href="#" data-section="homework-assignments">Homework and Assignments</a></li>
+        <li><a href="#" data-section="communication">Communication</a></li>
+        <li><a href="#" data-section="extracurricular-activities">Extracurricular Activities</a></li>
+        <li><a href="#" data-section="health-wellness">Health and Wellness</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="main-content">
+    <header>
+      <h1>Welcome back, [User Name]!</h1>
+      <p>Take a look at the updated overview</p>
+    </header>
+    <div class="main-content1">
+      <div class="content">
+        <div class="dropdown-column">
+          <div class="dropdown-container">
+            <select id="class-select">
+              <option value="">Select Class</option>
+              <option value="Class 1">Class 1</option>
+              <option value="Class 2">Class 2</option>
+              <option value="Class 3">Class 3</option>
+              <option value="Class 4">Class 4</option>
+              <option value="Class 5">Class 5</option>
+              <option value="Class 6">Class 6</option>
+              <option value="Class 7">Class 7</option>
+              <option value="Class 8">Class 8</option>
+              <option value="Class 9">Class 9</option>
+              <option value="Class 10">Class 10</option>
+            </select>
+          </div>
+          <div class="dropdown-container">
+            <select id="section-select">
+              <option value="">Select Section</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+          </div>
+          <div class="dropdown-container">
+            <select id="subject-select">
+              <option value="">Select Subject</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Science">Science</option>
+              <option value="English">English</option>
+              <option value="Social Studies">Social Studies</option>
+              <option value="Physical Education">Physical Education</option>
+              <option value="Arts">Arts</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div id="homework-assignments" class="tab-content active">
+          <div class="homework-form">
+            <h2>Submit Homework and Assignments</h2>
+            <input type="text" placeholder="Title">
+            <textarea placeholder="Description"></textarea>
+            <input type="file" placeholder="Attach Files">
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+        <div id="behavior-reports" class="tab-content">
+          <div class="behavior-wrapper">
+            <div class="select-student">
+              <h2>Select Student</h2>
+              <div class="students-list">
+                <ul id="students-list">
+                  <li data-student="Student 1">Student 1</li>
+                  <li data-student="Student 2">Student 2</li>
+                  <li data-student="Student 3">Student 3</li>
+                  <li data-student="Student 4">Student 4</li>
+                  <li data-student="Student 5">Student 5</li>
+                </ul>
+              </div>
+            </div>
+            <div id="behavior-form" class="behavior-form">
+              <h2>Update Behavior for <span id="student-name"></span></h2>
+              <textarea placeholder="Enter behavior report"></textarea>
+              <button type="submit">Submit</button>
+            </div>
+          </div>
+        </div>
+        <div id="extracurricular-activities" class="tab-content">
+          <h2>Extracuricular activities</h2>
+          <!-- Content for Student Information -->
+        </div><div id="student-info" class="tab-content">
+        <h2>Student Information</h2>
+        <!-- Content for Student Information -->
+      </div>
+        <div id="communication" class="tab-content">
+          <h2>Communication</h2>
+          <!-- Content for Student Information -->
+        </div><div id="health-wellness" class="tab-content">
+        <h2>Health and Wellness</h2>
+        <!-- Content for Student Information -->
+      </div>
+        <div id="classroom-activities" class="tab-content">
+          <h2>Classroom Activities</h2>
+          <!-- Content for Student Information -->
+        </div>
+        <div id="academic-performance" class="tab-content">
+          <h2>Academic Performance</h2>
+          <!-- Content for Academic Performance -->
+          <form class="marks-form">
+            <div class="marks-and-info">
+              <div class="marks-entry">
+                <div class="subject-entry">
+                  <label for="math">Mathematics</label>
+                  <input type="number" id="math" name="math" placeholder="Enter marks">
+                </div>
+                <div class="subject-entry">
+                  <label for="science">Science</label>
+                  <input type="number" id="science" name="science" placeholder="Enter marks">
+                </div>
+                <div class="subject-entry">
+                  <label for="english">English</label>
+                  <input type="number" id="english" name="english" placeholder="Enter marks">
+                </div>
+                <div class="subject-entry">
+                  <label for="history">History</label>
+                  <input type="number" id="history" name="history" placeholder="Enter marks">
+                </div>
+                <div class="subject-entry">
+                  <label for="geography">Geography</label>
+                  <input type="number" id="geography" name="geography" placeholder="Enter marks">
+                </div>
+              </div>
+              <div class="info-entry">
+                <div class="student-info">
+                  <label for="student">Select Student</label>
+                  <select id="student" name="student">
+                    <option value="" disabled selected>Select a student</option>
+                    <option value="student1">Student 1</option>
+                    <option value="student2">Student 2</option>
+                    <option value="student3">Student 3</option>
+                  </select>
+                </div>
+                <div class="student-notes">
+                  <label for="notes">Additional Notes</label>
+                  <textarea id="notes" name="notes" placeholder="Add text about the student"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- More sections as needed -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+<script src="script.js"></script>
+<script>
+
+  document.addEventListener("DOMContentLoaded", function() {
+      const sidebarLinks = document.querySelectorAll('.sidebar nav ul li a');
+      const tabContents = document.querySelectorAll('.tab-content');
+      const studentsList = document.getElementById('students-list');
+      const behaviorForm = document.getElementById('behavior-form');
+      const studentNameElement = document.getElementById('student-name');
+      const selectClass = document.getElementById('class-select');
+      const selectSection = document.getElementById('section-select');
+      const selectSubject = document.getElementById('subject-select');
+
+      function enableTabs() {
+          if (selectClass.value && selectSection.value && selectSubject.value) {
+              tabs.forEach(tab => tab.classList.remove('disabled'));
+          } else {
+              tabs.forEach(tab => tab.classList.add('disabled'));
+          }
+      }
+
+      function updateTabContent() {
+          const target = this.getAttribute('data-section');
+
+          tabContents.forEach(content => {
+              content.classList.remove('active');
+          });
+
+          document.getElementById(target).classList.add('active');
+      }
+
+      sidebarLinks.forEach(link => {
+          link.addEventListener('click', function(event) {
+              event.preventDefault();
+              const target = this.getAttribute('data-section');
+
+              tabContents.forEach(content => {
+                  content.classList.remove('active');
+              });
+
+              document.getElementById(target).classList.add('active');
+          });
+      });
+
+      studentsList.addEventListener('click', function(event) {
+          if (event.target.tagName === 'LI') {
+              const studentName = event.target.getAttribute('data-student');
+              studentNameElement.textContent = studentName;
+              behaviorForm.classList.add('active');
+          }
+      });
+
+      selectClass.addEventListener('change', enableTabs);
+      selectSection.addEventListener('change', enableTabs);
+      selectSubject.addEventListener('change', enableTabs);
+
+      enableTabs(); // Initialize the state of the tabs
+  });
+</script>
+</body>
+</html>
